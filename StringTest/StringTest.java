@@ -8,7 +8,7 @@ public class StringTest{
 
   //This test case indicate that == should not be used for comparing values of two string objects
   public static void compareString(){
-    String a = "Hello";
+    String a = "Hello"; 
     String b = "Hello";
     System.out.println("a=Hello, b=Hello");
     System.out.println("a==b: " + a==b?"Yes":"No");
