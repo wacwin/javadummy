@@ -7,6 +7,7 @@ package learning.core;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 /**
  * A simple object representing an employee.
@@ -17,7 +18,7 @@ import java.text.SimpleDateFormat;
 public class Employee{
   private String name;
   private Date birthDate;
-  private decimal salary;
+  private double salary;
   private Date onboardDate;
   private String title;
   private Employee reportTo;
@@ -40,8 +41,8 @@ public class Employee{
    */
   public Employee(String name, Date birthDate, Date onboardDate, String title, Employee manager){
     this.name = name;
-    this.birthDate = birthDate;
-    this.onboardDate = onboardDate;
+    this.birthDate = (Date)birthDate.clone();
+    this.onboardDate = (Date)onboardDate.clone();
     this.title = title;
     this.reportTo = manager;
   }
@@ -55,7 +56,7 @@ public class Employee{
    * @param title The job title
    * @param manager The manager of the employee
    */
-  public Employee(String name, String birthDateString, String onboardDateString, String title, Employee manager){
+  public Employee(String name, String birthDateString, String onboardDateString, String title, Employee manager) throws ParseException{
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     this.name = name;
     this.birthDate = df.parse(birthDateString);
@@ -79,7 +80,7 @@ public class Employee{
    * @return The birth date of the employee
    */
   public Date getBirthDate(){
-    return this.birthDate;
+    return (Date)this.birthDate.clone();
   }
   /**
    * Get the onboard date of the employee.
@@ -87,7 +88,7 @@ public class Employee{
    * @return The onboard date of the employee
    */
   public Date getOnboardDate(){
-    return this.onboardDate;
+    return (Date)this.onboardDate.clone();
   }
   /**
    * Get the title of the employee.
@@ -110,7 +111,7 @@ public class Employee{
    *
    * @return The current salary of the employee
    */
-  public decimal getSalary(){
+  public double getSalary(){
     return this.salary;
   }
 
@@ -129,7 +130,7 @@ public class Employee{
    * @param birthDate The birth day of the employee
    */
   public void setBirthDate(Date birthDate){
-    this.birthDate = birthDate;
+    this.birthDate = (Date)birthDate.clone();
   }
 
   /**
@@ -137,7 +138,7 @@ public class Employee{
    *
    * @param birthDate The birth day of the employee which must be in the string format "yyyy-MM-dd"
    */
-  public void setBirthDate(String birthDate){
+  public void setBirthDate(String birthDate) throws ParseException{
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     this.birthDate = df.parse(birthDate);
   }
@@ -148,14 +149,14 @@ public class Employee{
    * @param birthDate The onboard day of the employee
    */
   public void setOnboardDate(Date onboardDate){
-    this.onboardDate = onboardDate;
+    this.onboardDate = (Date)onboardDate.clone();
   }
   /**
    * Set the onboard day of the employee.
    *
    * @param onboardDate The onboard day of the employee which must be in the string format "yyyy-MM-dd"
    */
-  public void setOnboardDate(String onboardDate){
+  public void setOnboardDate(String onboardDate) throws ParseException{
       SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
       this.onboardDate = df.parse(onboardDate);
   }
@@ -172,7 +173,7 @@ public class Employee{
    *
    * @param salary The salary of the employee
    */
-  public void setSalary(decimal salary){
+  public void setSalary(double salary){
     this.salary = salary;
   }
   /**
